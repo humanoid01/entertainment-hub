@@ -1,0 +1,36 @@
+.genres {
+  margin-top: 100px;
+}
+.genres__item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.genres__item-close {
+  display: inline-flex;
+  height: 100%;
+  align-items: center;
+  border: 1px solid transparent;
+  background-color: #0066ff;
+  border-radius: 50%;
+  transition: 400ms ease;
+}
+.genres__item-close:hover {
+  background: transparent;
+  border-color: black;
+  border-radius: 50%;
+}
+.genres__item--selected {
+  padding: 0.5rem 0.7rem;
+  background-color: #c1c1c1;
+  border-radius: 2rem;
+  display: flex;
+  gap: 0.3rem;
+  margin-bottom: 10px;
+}
+.genres__item--not {
+  padding: 0.5rem 0.7rem;
+  background-color: #c1c1c1;
+  border-radius: 2rem;
+}/*# sourceMappingURL=genres.css.map */

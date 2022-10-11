@@ -1,5 +1,5 @@
 .trending {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: column;
   background: #282c34;
@@ -13,11 +13,6 @@
   transition: ease 400ms;
   cursor: pointer;
 }
-
-img {
-  align-self: center;
-}
-
 .trending__score {
   position: absolute;
   top: 0;
@@ -32,6 +27,7 @@ img {
 }
 .trending img {
   border-radius: 1.5rem;
+  align-self: center;
 }
 .trending__title {
   text-align: center;
@@ -42,4 +38,4 @@ img {
   display: flex;
   justify-content: space-around;
   color: #888;
-} /*# sourceMappingURL=trendingItem.css.map */
+}/*# sourceMappingURL=trendingItem.css.map */

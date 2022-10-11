@@ -13,15 +13,21 @@ export const Navbar = () => {
           <FiTrendingUp />
         </div>
       </Link>
-      <div className='nav__item'>
-        <BiMovie />
-      </div>
-      <div className='nav__item'>
-        <MdMonitor />
-      </div>
-      <div className='nav__item'>
-        <AiOutlineSearch />
-      </div>
+      <Link to={'/movies'}>
+        <div className='nav__item'>
+          <BiMovie />
+        </div>
+      </Link>
+      <Link to={'/series'}>
+        <div className='nav__item'>
+          <MdMonitor />
+        </div>
+      </Link>
+      <Link to={'/search'}>
+        <div className='nav__item'>
+          <AiOutlineSearch />
+        </div>
+      </Link>
     </div>
   );
 };

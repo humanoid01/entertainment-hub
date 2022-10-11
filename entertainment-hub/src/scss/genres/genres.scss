@@ -1,0 +1,37 @@
+.genres {
+  margin-top: 100px;
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    cursor: pointer;
+    &-close {
+      display: inline-flex;
+      height: 100%;
+      align-items: center;
+      border: 1px solid transparent;
+      background-color: #0066ff;
+      border-radius: 50%;
+      transition: 400ms ease;
+
+      &:hover {
+        background: transparent;
+        border-color: black;
+        border-radius: 50%;
+      }
+    }
+    &--selected {
+      padding: 0.5rem 0.7rem;
+      background-color: #c1c1c1;
+      border-radius: 2rem;
+      display: flex;
+      gap: 0.3rem;
+      margin-bottom: 10px;
+    }
+    &--not {
+      padding: 0.5rem 0.7rem;
+      background-color: #c1c1c1;
+      border-radius: 2rem;
+    }
+  }
+}
