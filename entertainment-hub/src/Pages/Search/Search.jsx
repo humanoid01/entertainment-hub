@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { REACT__APP__API_KEY } from '../../api';
 import { SingleTrendingItem } from '../../components/SingleTrendingItem/SingleTrendingItem';
+import '../../scss/search/search.css';
 
 export const Search = () => {
   const [type, setType] = useState(1);
   const [searchMovies, setSearchMovies] = useState('');
   const [searchSeries, setSearchSeries] = useState('');
   const [content, setContent] = useState([]);
-
+  const [showSearchBar, setShowSearchBar] = useState(0);
   const fetchSearch = async () => {
     const request = await fetch(`
 https://api.themoviedb.org/3/search/${
@@ -24,10 +25,12 @@ https://api.themoviedb.org/3/search/${
   }, [searchMovies, searchSeries]);
 
   return (
-    <div>
+    <section id='search' style={{ marginTop: 150 }}>
       <input
         type='text'
+        placeholder='Search'
         value={searchSeries}
+        style={{ display: showSearchBar ? 'none' : '' }}
         onChange={e => {
           setType(1);
           setSearchSeries(e.target.value);
@@ -36,13 +39,27 @@ https://api.themoviedb.org/3/search/${
       />
       <input
         type='text'
+        placeholder='Search'
         value={searchMovies}
+        style={{ display: showSearchBar ? '' : 'none' }}
         onChange={e => {
           setType(0);
           setSearchMovies(e.target.value);
           setSearchSeries('');
         }}
       />
+      <div className='search__option'>
+        <div
+          className='search__option--item'
+          onClick={() => setShowSearchBar(0)}>
+          <p className={showSearchBar ? '' : 'active'}>Search TV Series</p>
+        </div>
+        <div
+          className='search__option--item'
+          onClick={() => setShowSearchBar(1)}>
+          <p className={showSearchBar ? 'active' : ''}>Search Movies</p>
+        </div>
+      </div>
       <div className='fresh'>
         {content?.map(
           ({
@@ -71,6 +88,6 @@ https://api.themoviedb.org/3/search/${
           )
         )}
       </div>
-    </div>
+    </section>
   );
 };

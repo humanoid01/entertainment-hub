@@ -8,18 +8,21 @@ import '../../scss/trending/trending.css';
 export const Trending = () => {
   const [trending, setTrending] = useState('');
   const [currentTrending, setCurrentTrending] = useState([]);
+  const [page, setPage] = useState(1);
 
   const fetchTrending = async () => {
     const trendingRequest = await fetch(
-      `https://api.themoviedb.org/3/trending/all/day?api_key=${REACT__APP__API_KEY}`
+      `https://api.themoviedb.org/3/trending/all/day?api_key=${REACT__APP__API_KEY}&page=${page}`
     );
     const resolved = await trendingRequest.json();
-    setTrending(resolved.results);
+    setTrending(resolved);
+
+    setCurrentTrending(resolved.results);
   };
 
   useEffect(() => {
     fetchTrending();
-  }, []);
+  }, [page]);
 
   return (
     <div>
@@ -51,12 +54,17 @@ export const Trending = () => {
           )
         )}
       </div>
-      {trending && (
+      {trending.results && (
         <Pagination
-          itemsPerPage={3}
-          content={trending}
-          handleCurrent={setCurrentTrending}
-          displayIndexes={2}
+          itemsPerPage={20}
+          content={trending.results}
+          handleCurrent={newVal => {
+            setCurrentTrending(newVal);
+          }}
+          displayIndexes={4}
+          total_results={trending.total_results}
+          page={page}
+          setPage={setPage}
         />
       )}
     </div>

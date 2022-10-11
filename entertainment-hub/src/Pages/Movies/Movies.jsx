@@ -12,13 +12,16 @@ export const Movies = () => {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [genres, setGenres] = useState([]);
   const genreForURL = useGenre(selectedGenres);
+  const [page, setPage] = useState(1);
 
   const fetchMovies = async () => {
     const request = await fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=${REACT__APP__API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${genreForURL}`
     );
     const data = await request.json();
-    setMovies(data.results);
+    setMovies(data);
+
+    setCurrentMovies(data.results);
   };
 
   useEffect(() => {
@@ -64,10 +67,15 @@ export const Movies = () => {
       </div>
       {movies && (
         <Pagination
-          itemsPerPage={3}
-          content={movies}
-          handleCurrent={setCurrentMovies}
-          displayIndexes={2}
+          itemsPerPage={20}
+          content={movies.results}
+          handleCurrent={newVal => {
+            setCurrentMovies(newVal);
+          }}
+          displayIndexes={4}
+          total_results={movies.total_results}
+          page={page}
+          setPage={setPage}
         />
       )}
     </div>

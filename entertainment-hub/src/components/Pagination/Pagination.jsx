@@ -1,36 +1,24 @@
 import React from 'react';
 import '../../scss/pagination/pagination.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 export const Pagination = ({
-  content,
   itemsPerPage,
-  handleCurrent,
   displayIndexes,
+  total_results,
+  page = 1,
+  setPage,
 }) => {
-  const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(content.length / itemsPerPage);
+  console.log(total_results);
+  const totalPages = Math.ceil(total_results / itemsPerPage);
+
   const pageIndexes = Array.from({ length: totalPages }, (v, i) => i + 1);
 
   const changePage = value => {
-    if (value >= 1 && value <= Math.ceil(content.length / itemsPerPage)) {
+    if (value >= 1 && value <= Math.ceil(total_results / itemsPerPage)) {
       setPage(value);
-      handleCurrent(current(value));
       window.scroll(0, 0);
     }
   };
-
-  const current = newPage => {
-    const currentMovies = [...content].slice(
-      (newPage || page) * itemsPerPage - itemsPerPage,
-      (newPage || page) * itemsPerPage
-    );
-    return currentMovies;
-  };
-
-  useEffect(() => {
-    handleCurrent(current());
-    setPage(1);
-  }, [content]);
 
   return (
     <section id='pagination'>
