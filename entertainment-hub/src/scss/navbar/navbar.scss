@@ -1,0 +1,28 @@
+@import '../variables/variables.scss';
+.nav__box {
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  gap: 0.5rem;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 4rem;
+  padding: 1rem 1rem;
+}
+
+.nav__item {
+  display: flex;
+  cursor: pointer;
+  padding: 1.5rem 1.5rem;
+  font-size: 24px;
+  color: #b1b1b1;
+  &:hover {
+    background: rgba($color: #555555, $alpha: 0.3);
+    border-radius: 50%;
+  }
+}

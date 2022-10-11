@@ -1,0 +1,17 @@
+header {
+  width: 100%;
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  background: #39445a;
+  font-size: 5vw;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 2px 2px 10px 2px black;
+  color: #fff;
+  z-index: 9999;
+  padding: 0.9rem;
+  border-radius: 0.5rem;
+}/*# sourceMappingURL=header.css.map */

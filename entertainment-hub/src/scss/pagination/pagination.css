@@ -1,0 +1,9 @@
+.page__box {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.page__item p.active {
+  background-color: aliceblue;
+}/*# sourceMappingURL=pagination.css.map */

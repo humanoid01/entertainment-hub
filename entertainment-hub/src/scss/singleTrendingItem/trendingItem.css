@@ -1,0 +1,45 @@
+.trending {
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  background: #282c34;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 2rem;
+  width: 350px;
+  padding: 1rem 1rem;
+  margin: 1rem 1rem;
+  position: relative;
+  transition: ease 400ms;
+  cursor: pointer;
+}
+
+img {
+  align-self: center;
+}
+
+.trending__score {
+  position: absolute;
+  top: 0;
+  right: -5%;
+  background-color: #0066ff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+}
+.trending:hover {
+  background-color: transparent;
+  border-color: #282c34;
+}
+.trending img {
+  border-radius: 1.5rem;
+}
+.trending__title {
+  text-align: center;
+  word-wrap: break-word;
+  font-weight: 400;
+}
+.trending__sub {
+  display: flex;
+  justify-content: space-around;
+  color: #888;
+} /*# sourceMappingURL=trendingItem.css.map */
