@@ -50,14 +50,20 @@ https://api.themoviedb.org/3/search/${
       />
       <div className='search__option'>
         <div
-          className='search__option--item'
+          className={
+            showSearchBar
+              ? 'search__option--item active'
+              : 'search__option--item'
+          }
           onClick={() => setShowSearchBar(0)}>
-          <p className={showSearchBar ? '' : 'active'}>Search TV Series</p>
+          <span className={showSearchBar ? '' : 'active'}>
+            Search TV Series
+          </span>
         </div>
         <div
           className='search__option--item'
           onClick={() => setShowSearchBar(1)}>
-          <p className={showSearchBar ? 'active' : ''}>Search Movies</p>
+          <span className={showSearchBar ? 'active' : ''}>Search Movies</span>
         </div>
       </div>
       <div className='fresh'>

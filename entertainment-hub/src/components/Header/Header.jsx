@@ -4,8 +4,10 @@ import '../../scss/header/header.css';
 export const Header = () => {
   return (
     <div>
-      <header id='home'>Header</header>
-      <div className='fake'>asd</div>
+      <header onClick={() => window.scroll(0, 0)} id='home'>
+        ENTERTAIN IO
+      </header>
+      <div className='fake'>''</div>
     </div>
   );
 };

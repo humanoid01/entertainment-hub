@@ -1,6 +1,12 @@
 import React from 'react';
 import '../../scss/pagination/pagination.css';
-import { useEffect } from 'react';
+import {
+  BiArrowToLeft,
+  BiArrowToRight,
+  BiChevronLeft,
+  BiChevronRight,
+} from 'react-icons/bi';
+
 export const Pagination = ({
   itemsPerPage,
   displayIndexes,
@@ -8,7 +14,6 @@ export const Pagination = ({
   page = 1,
   setPage,
 }) => {
-  console.log(total_results);
   const totalPages = Math.ceil(total_results / itemsPerPage);
 
   const pageIndexes = Array.from({ length: totalPages }, (v, i) => i + 1);
@@ -23,10 +28,15 @@ export const Pagination = ({
   return (
     <section id='pagination'>
       <div className='page__box'>
-        <div onClick={() => changePage(1)}>first</div>
-        <div onClick={() => changePage(page - 1)}>Previous</div>
+        <div onClick={() => changePage(1)}>
+          <BiArrowToLeft className='pagination__nav' />
+        </div>
+        <div onClick={() => changePage(page - 1)}>
+          <BiChevronLeft className='pagination__nav' />
+        </div>
 
-        {pageIndexes.map((number, i) => {
+        {pageIndexes.map(number => {
+          if (number > 500) return '';
           if (
             number >= page - displayIndexes &&
             number <= page + displayIndexes
@@ -34,16 +44,20 @@ export const Pagination = ({
             return (
               <div
                 key={number}
-                className='page__item'
+                className={page === number ? 'page__item active' : 'page__item'}
                 onClick={() => changePage(number)}>
-                <p className={page === number ? 'active' : ''}>{number}</p>
+                <p>{number}</p>
               </div>
             );
           }
+          return '';
         })}
-
-        <div onClick={() => changePage(page + 1)}>Next</div>
-        <div onClick={() => changePage(totalPages)}>last</div>
+        <div onClick={() => changePage(page + 1)}>
+          <BiChevronRight className='pagination__nav' />
+        </div>
+        <div onClick={() => changePage(500)}>
+          <BiArrowToRight className='pagination__nav' />
+        </div>
       </div>
     </section>
   );

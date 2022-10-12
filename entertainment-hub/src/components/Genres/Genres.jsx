@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { REACT__APP__API_KEY } from '../../api';
 import '../../scss/genres/genres.css';
 import { GrFormClose } from 'react-icons/gr';
@@ -9,16 +9,14 @@ export const Genres = ({
   setSelectedGenres,
   selectedGenres,
 }) => {
-  const fetchGenres = async () => {
-    const request = await fetch(`
-https://api.themoviedb.org/3/genre/${type}/list?api_key=${REACT__APP__API_KEY}&language=en-US`);
-    const data = await request.json();
-    setGenres(data.genres);
-  };
-
   useEffect(() => {
-    fetchGenres();
-  }, []);
+    (async () => {
+      const request = await fetch(`
+https://api.themoviedb.org/3/genre/${type}/list?api_key=${REACT__APP__API_KEY}&language=en-US`);
+      const data = await request.json();
+      setGenres(data.genres);
+    })();
+  }, [setGenres, type]);
 
   const handleAdd = genre => {
     setSelectedGenres([...selectedGenres, genre]);
@@ -33,8 +31,8 @@ https://api.themoviedb.org/3/genre/${type}/list?api_key=${REACT__APP__API_KEY}&l
     <section className='genres'>
       <div className='genres__item'>
         {selectedGenres.map(genre => (
-          <div className='genres__item--selected'>
-            <div key={genre.id}>{genre.name}</div>
+          <div key={genre.id} className='genres__item--selected'>
+            <div>{genre.name}</div>
             <div className='genres__item-close'>
               <GrFormClose onClick={() => handleRemove(genre)} />
             </div>

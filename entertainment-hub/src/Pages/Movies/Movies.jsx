@@ -14,19 +14,17 @@ export const Movies = () => {
   const genreForURL = useGenre(selectedGenres);
   const [page, setPage] = useState(1);
 
-  const fetchMovies = async () => {
-    const request = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${REACT__APP__API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate&with_genres=${genreForURL}`
-    );
-    const data = await request.json();
-    setMovies(data);
-
-    setCurrentMovies(data.results);
-  };
-
   useEffect(() => {
-    fetchMovies();
-  }, [genreForURL]);
+    (async () => {
+      const request = await fetch(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${REACT__APP__API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_watch_monetization_types=flatrate&with_genres=${genreForURL}`
+      );
+      const data = await request.json();
+      setMovies(data);
+
+      setCurrentMovies(data.results);
+    })();
+  }, [genreForURL, page]);
 
   return (
     <div>
@@ -37,6 +35,7 @@ export const Movies = () => {
         genres={genres}
         setGenres={setGenres}
       />
+      <h2 className='heading'>Movies</h2>
       <div className='fresh'>
         {currentMovies?.map(
           ({
@@ -58,7 +57,7 @@ export const Movies = () => {
               poster_path={poster_path}
               title={name || title}
               date={release_date || first_air_date}
-              media_type='Movies'
+              media_type='movie'
               vote_average={vote_average}
               overwiev={overwiev}
             />

@@ -10,22 +10,21 @@ export const Trending = () => {
   const [currentTrending, setCurrentTrending] = useState([]);
   const [page, setPage] = useState(1);
 
-  const fetchTrending = async () => {
-    const trendingRequest = await fetch(
-      `https://api.themoviedb.org/3/trending/all/day?api_key=${REACT__APP__API_KEY}&page=${page}`
-    );
-    const resolved = await trendingRequest.json();
-    setTrending(resolved);
-
-    setCurrentTrending(resolved.results);
-  };
-
   useEffect(() => {
-    fetchTrending();
+    (async () => {
+      const trendingRequest = await fetch(
+        `https://api.themoviedb.org/3/trending/all/day?api_key=${REACT__APP__API_KEY}&page=${page}`
+      );
+      const resolved = await trendingRequest.json();
+      setTrending(resolved);
+
+      setCurrentTrending(resolved.results);
+    })();
   }, [page]);
 
   return (
     <div>
+      <h2 className='heading'>Trending</h2>
       <div className='fresh'>
         {currentTrending?.map(
           ({

@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export const Navbar = () => {
   return (
     <div className='nav__box'>
-      <Link to={'/trending'}>
+      <Link to={'/'}>
         <div className='nav__item'>
           <FiTrendingUp />
         </div>

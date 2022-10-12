@@ -6,25 +6,23 @@ import { REACT__APP__API_KEY } from '../../api';
 import { Genres } from '../../components/Genres/Genres';
 
 export const Series = () => {
-  const [movies, setMovies] = useState('');
-  const [currentMovies, setCurrentMovies] = useState([]);
+  const [series, setSeries] = useState('');
+  const [currentSeries, setCurrentSeries] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [genres, setGenres] = useState([]);
   const genreForURL = useGenre(selectedGenres);
   const [page, setPage] = useState(1);
 
-  const fetchMovies = async () => {
-    const request = await fetch(
-      `https://api.themoviedb.org/3/discover/tv?api_key=${REACT__APP__API_KEY}&page=${page}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_watch_monetization_types=flatrate&with_genres=${genreForURL}`
-    );
-    const data = await request.json();
-    setMovies(data);
-
-    setCurrentMovies(data.results);
-  };
-
   useEffect(() => {
-    fetchMovies();
+    (async () => {
+      const request = await fetch(
+        `https://api.themoviedb.org/3/discover/tv?api_key=${REACT__APP__API_KEY}&page=${page}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_watch_monetization_types=flatrate&with_genres=${genreForURL}`
+      );
+      const data = await request.json();
+      setSeries(data);
+
+      setCurrentSeries(data.results);
+    })();
   }, [genreForURL, page]);
 
   return (
@@ -36,8 +34,9 @@ export const Series = () => {
         genres={genres}
         setGenres={setGenres}
       />
+      <h2 className='heading'>Series</h2>
       <div className='fresh'>
-        {currentMovies?.map(
+        {currentSeries?.map(
           ({
             id,
             poster_path,
@@ -64,15 +63,15 @@ export const Series = () => {
           )
         )}
       </div>
-      {movies.results && (
+      {series.results && (
         <Pagination
           itemsPerPage={20}
-          content={movies.results}
+          content={series.results}
           handleCurrent={newVal => {
-            setCurrentMovies(newVal);
+            setCurrentSeries(newVal);
           }}
           displayIndexes={4}
-          total_results={movies.total_results}
+          total_results={series.total_results}
           page={page}
           setPage={setPage}
         />
