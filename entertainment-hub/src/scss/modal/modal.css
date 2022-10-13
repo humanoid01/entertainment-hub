@@ -23,7 +23,7 @@
   transform: translate(-50%, -50%);
   padding: 1.3rem;
   border-radius: 1rem;
-  width: 60%;
+  width: 75%;
 }
 .modal__window--landscape {
   width: 100%;
@@ -31,12 +31,6 @@
   display: block;
   margin: auto;
   border-radius: 1rem;
-}
-.modal__window--img {
-  width: 60%;
-  height: auto;
-  display: none;
-  margin: auto;
 }
 .modal__window--title {
   font-weight: 400;
