@@ -16,7 +16,6 @@ export const Modal = ({ media_type, id, title, date, handleModal }) => {
       );
       const response = await request.json();
       setData(response);
-      console.log(response);
     })();
 
     (async () => {
@@ -25,8 +24,20 @@ export const Modal = ({ media_type, id, title, date, handleModal }) => {
       );
       const response = await request.json();
       setVideo(response);
+      console.log(response);
     })();
   }, [id, media_type]);
+
+  const getTrailer = vidInfo => {
+    const trailerOrTeaser = [];
+    vidInfo.forEach(({ name, key }) => {
+      if (name.toLowerCase().includes('official' || 'trailer')) {
+        trailerOrTeaser.push(key);
+      }
+    });
+    if (!trailerOrTeaser.length) return vidInfo[0].key;
+    return trailerOrTeaser[0];
+  };
 
   return (
     <section
@@ -81,7 +92,9 @@ export const Modal = ({ media_type, id, title, date, handleModal }) => {
           {video.results && video.results.length ? (
             <div className='modal__window--watch'>
               <a
-                href={`http://www.youtube.com/watch?v=${video.results[0].key}`}
+                href={`http://www.youtube.com/watch?v=${getTrailer(
+                  video.results
+                )}`}
                 target='_blank'
                 rel='noreferrer'>
                 <GrYoutube /> WATCH THE TRAILER
