@@ -26,8 +26,7 @@
   width: 75%;
 }
 .modal__window--landscape {
-  width: 100%;
-  height: auto;
+  width: 75%;
   display: block;
   margin: auto;
   border-radius: 1rem;
@@ -57,4 +56,13 @@
 .modal__window--watch a {
   color: #ddd;
   text-decoration: none;
+}
+.modal__window--close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  font-size: 2.5rem;
+  color: rgba(255, 29, 77, 0.9);
+  border: none;
 }/*# sourceMappingURL=modal.css.map */

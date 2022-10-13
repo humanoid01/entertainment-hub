@@ -3,6 +3,7 @@ import '../../scss/modal/modal.css';
 import { REACT__APP__API_KEY } from '../../api.js';
 import { img_1280 } from '../../config/config';
 import { GrYoutube } from 'react-icons/gr';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
 export const Modal = ({ media_type, id, title, date, handleModal }) => {
   const [data, setData] = useState('');
@@ -41,6 +42,15 @@ export const Modal = ({ media_type, id, title, date, handleModal }) => {
           e.stopPropagation();
           handleModal(true);
         }}>
+        <button
+          className='modal__window--close'
+          onClick={e => {
+            e.stopPropagation();
+            handleModal(false);
+          }}>
+          {' '}
+          <AiFillCloseCircle />{' '}
+        </button>
         <img
           src={`${img_1280}/${data.backdrop_path}`}
           alt={title}
